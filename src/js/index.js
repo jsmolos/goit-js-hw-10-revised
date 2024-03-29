@@ -44,14 +44,14 @@ function createMarkup(event) {
   fetchCatByBreed(breedId)
     .then(data => {
       const { url, breeds } = data[0];
-      const { name, description, temperament } = breeds[0];
+      const { id, height, width} = breeds[0];
 
       catInfoEl.innerHTML = `
-        <img src="${url}" alt="${name}" width="400">
+        <img src="${url}" alt="${breeds}" width="400">
         <div class="box">
-          <h2>${name}</h2>
-          <p>${description}</p>
-          <p><strong>Temperament:</strong> ${temperament}</p>
+          <h2>${id}</h2>
+          <p>${height}</p>
+          <p><strong>width:</strong> ${width}</p>
         </div>
       `;
       loaderEl.classList.add('is-hidden');
