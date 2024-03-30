@@ -36,7 +36,7 @@ function chooseBreed() {
 
 function createMarkup(event) {
   loaderEl.classList.remove('is-hidden');
-  breedSelectEl.classList.add('is-hidden');
+  errorEl.classList.add('is-hidden');
   catInfoEl.classList.add('is-hidden');
 
   const breedId = event.target.value;
@@ -56,7 +56,6 @@ function createMarkup(event) {
       `;
       loaderEl.classList.add('is-hidden');
       catInfoEl.classList.remove('is-hidden');
-      errorEl.classList.add('is-hidden');
     })
     .catch(error => {
       console.error('Error fetching cat data:', error);
