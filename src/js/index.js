@@ -1,4 +1,4 @@
-import { fetchBreeds, fetchCatByBreed } from './cat-api';
+import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -44,22 +44,25 @@ function createMarkup(event) {
   fetchCatByBreed(breedId)
     .then(data => {
       const { url, breeds } = data[0];
-      const { id, height, width} = breeds[0];
+      const { description, temperament, name } = breeds[0];
 
       catInfoEl.innerHTML = `
-        <img src="${url}" alt="${breeds}" width="400">
+        <img src="${url}" alt="${name}" width="400">
         <div class="box">
-          <h2>${id}</h2>
-          <p>${height}</p>
-          <p><strong>width:</strong> ${width}</p>
+          <h2>${name}</h2>
+          <p>${description}</p>
+          <p><strong>Temperament:</strong> ${temperament}</p>
         </div>
       `;
       loaderEl.classList.add('is-hidden');
       catInfoEl.classList.remove('is-hidden');
+      errorEl.classList.add('is-hidden');
     })
     .catch(error => {
       console.error('Error fetching cat data:', error);
       errorEl.classList.remove('is-hidden');
+      loaderEl.classList.add(is-hidden);
+      catInfoEl.classList.add('is-hidden');
     });
 }
 
